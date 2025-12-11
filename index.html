@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>TerraPlan Smart - Accueil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #145a32;
+      --green: #1b5e20;
+      --green-light: #e8f5e9;
+      --bg: #f3f5fb;
+      --card-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      --accent: #ffb300;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #222;
+      line-height: 1.5;
+    }
+    a { color: var(--green-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      background: #0b3c1c;
+      color: #fff;
+      padding: 6px 0;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+    .navbar {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .navbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+    .nav-links a {
+      color: #fdfdfd;
+      opacity: 0.9;
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.12);
+      text-decoration: none;
+    }
+
+    header {
+      background: var(--green);
+      color: #fff;
+      padding: 26px 0 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+    }
+    header p {
+      margin: 0;
+      max-width: 780px;
+      font-size: 0.98rem;
+      opacity: 0.95;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+    }
+
+    main { padding: 24px 0 32px; }
+    section { scroll-margin-top: 80px; }
+    h2 {
+      margin-top: 32px;
+      color: var(--green-dark);
+      font-size: 1.25rem;
+    }
+    p { font-size: 0.95rem; }
+    ul { font-size: 0.95rem; padding-left: 18px; }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 12px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: var(--card-shadow);
+      flex: 1 1 240px;
+      font-size: 0.95rem;
+    }
+    .card small { color: #666; font-size: 0.8rem; }
+
+    .cta-row {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: var(--accent);
+      color: #222;
+    }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 16px;
+      color: #666;
+      border-top: 1px solid #dde2f2;
+      background: #fdfdfd;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-content { flex-direction: column; align-items: flex-start; }
+      .nav-links { margin-top: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  TerraPlan Smart – Plateforme digitale pour la planification agricole au Sénégal
+</div>
+
+<nav class="navbar">
+  <div class="container navbar-content">
+    <div class="brand">TerraPlan Smart</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="solution.html">Solution</a>
+      <a href="prototype.html">Prototype AgroMap</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="container">
+    <div class="chip">Prototype académique – Vue d’ensemble du projet</div>
+    <h1>TerraPlan Smart</h1>
+    <p>
+      Une plateforme de planification agricole qui aide les producteurs sénégalais
+      à choisir les cultures adaptées à leur zone, à planifier les périodes de
+      production et à mieux gérer les risques climatiques, économiques et
+      environnementaux.
+    </p>
+    <div class="cta-row">
+      <a href="prototype.html"><button class="btn">Voir la démo AgroMap</button></a>
+      <a href="solution.html"><button class="btn btn-outline">Comprendre la solution</button></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section id="presentation">
+      <h2>Présentation générale</h2>
+      <p>
+        L’agriculture occupe une place centrale dans l’économie et la vie sociale du
+        Sénégal : elle emploie une grande partie de la population et constitue une
+        source essentielle de revenus pour les ménages ruraux. Pourtant, le pays reste
+        fortement dépendant des importations alimentaires, notamment pour des produits
+        de base comme le riz, l’oignon ou la pomme de terre.
+      </p>
+      <p>
+        Dans ce contexte, TerraPlan Smart propose une approche numérique pour mieux
+        orienter la production, en combinant données agricoles, outils d’analyse et
+        cartographie pour accompagner les producteurs et les décideurs.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <strong>Vision</strong>
+          <p style="margin-top:6px;">
+            Contribuer à une agriculture plus résiliente et à la souveraineté alimentaire
+            du Sénégal grâce à une plateforme de planification accessible et inclusive.
+          </p>
+        </div>
+        <div class="card">
+          <strong>Public cible</strong>
+          <ul style="margin-top:6px;">
+            <li>Producteurs et organisations paysannes</li>
+            <li>Transformateurs et acheteurs</li>
+            <li>Collectivités territoriales</li>
+            <li>Ministères et agences publiques</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Approche</strong>
+          <p style="margin-top:6px;">
+            S’appuyer sur les données climatiques, les caractéristiques des sols,
+            l’historique des cultures et les besoins du marché pour fournir des
+            recommandations concrètes et contextualisées.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="enjeux">
+      <h2>Enjeux et contexte</h2>
+      <p>
+        Le Sénégal dispose d’un fort potentiel agricole, mais ce potentiel reste
+        sous-exploité. Le pays est confronté à :
+      </p>
+      <ul>
+        <li>Une planification insuffisante de la production agricole.</li>
+        <li>Un déficit d’informations fiables et à jour pour les producteurs.</li>
+        <li>Une forte dépendance aux importations de produits de base.</li>
+        <li>Des pertes post-récolte importantes.</li>
+        <li>Un lien encore faible entre producteurs, transformateurs et marchés.</li>
+      </ul>
+      <p>
+        Les technologies numériques et la disponibilité croissante de données
+        ouvrent la voie à de nouveaux outils pour sécuriser les revenus agricoles
+        et mieux adapter la production aux réalités du terrain.
+      </p>
+    </section>
+
+    <section id="objectifs">
+      <h2>Objectifs et résultats attendus</h2>
+      <div class="cards">
+        <div class="card">
+          <strong>Objectif général</strong>
+          <p style="margin-top:6px;">
+            Renforcer la planification agricole et la sécurité alimentaire en
+            fournissant un outil d’aide à la décision adapté au contexte sénégalais.
+          </p>
+        </div>
+        <div class="card">
+          <strong>Objectifs spécifiques</strong>
+          <ul style="margin-top:6px;">
+            <li>Identifier les cultures adaptées à chaque zone agro-écologique.</li>
+            <li>Proposer des périodes optimales de culture.</li>
+            <li>Réduire les risques de surproduction et de pénurie.</li>
+            <li>Améliorer la connexion entre les différents acteurs de la chaîne de valeur.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Impacts attendus</strong>
+          <ul style="margin-top:6px;">
+            <li>Augmentation des revenus des producteurs.</li>
+            <li>Réduction de l’insécurité alimentaire.</li>
+            <li>Diminution de la dépendance aux importations.</li>
+            <li>Meilleure utilisation des ressources naturelles.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="suite">
+      <h2>Découvrir la suite du projet</h2>
+      <p>
+        Pour aller plus loin :
+      </p>
+      <ul>
+        <li>
+          <strong><a href="solution.html">La solution TerraPlan Smart</a></strong> détaille
+          les fonctionnalités clés et l’architecture envisagée.
+        </li>
+        <li>
+          <strong><a href="prototype.html">Le prototype AgroMap</a></strong> présente une
+          démonstration concrète avec cartes, graphiques et recommandations par zone.
+        </li>
+        <li>
+          <strong><a href="contact.html">La page Contact</a></strong> permet de joindre la
+          porteuse du projet à Thiès.
+        </li>
+      </ul>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  © 2025 AgroMap Sénégal. Tous droits réservés.
+
+Service de traitement et d'analyse agricole au Sénégal
+</footer>
+
+</body>
+</html>

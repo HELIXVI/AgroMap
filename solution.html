@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>TerraPlan Smart - La solution</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #145a32;
+      --green: #1b5e20;
+      --green-light: #e8f5e9;
+      --bg: #f3f5fb;
+      --card-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #222;
+      line-height: 1.5;
+    }
+    a { color: var(--green-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      background: #0b3c1c;
+      color: #fff;
+      padding: 6px 0;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+    .navbar {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .navbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; }
+    .nav-links {
+      display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.88rem;
+    }
+    .nav-links a {
+      color: #fdfdfd; opacity: 0.9; padding: 4px 8px; border-radius: 999px;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
+
+    header {
+      background: var(--green);
+      color: #fff;
+      padding: 22px 0 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    header h1 { margin: 0 0 6px; font-size: 1.8rem; }
+    header p { margin: 0; max-width: 760px; font-size: 0.96rem; opacity: 0.95; }
+
+    main { padding: 24px 0 32px; }
+    h2 {
+      margin-top: 28px;
+      color: var(--green-dark);
+      font-size: 1.2rem;
+    }
+    p { font-size: 0.95rem; }
+    ul { font-size: 0.95rem; padding-left: 18px; }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 12px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: var(--card-shadow);
+      flex: 1 1 260px;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 16px;
+      color: #666;
+      border-top: 1px solid #dde2f2;
+      background: #fdfdfd;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-content { flex-direction: column; align-items: flex-start; }
+      .nav-links { margin-top: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  TerraPlan Smart – Description fonctionnelle de la solution
+</div>
+
+<nav class="navbar">
+  <div class="container navbar-content">
+    <div class="brand">TerraPlan Smart</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="solution.html">Solution</a>
+      <a href="prototype.html">Prototype AgroMap</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <h1>La solution TerraPlan Smart</h1>
+    <p>
+      Une plateforme digitale d’aide à la décision qui combine données climatiques,
+      caractéristiques des sols, historiques de production et informations de
+      marché pour orienter les décisions des producteurs et des autorités.
+    </p>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section>
+      <h2>Vue d’ensemble de la plateforme</h2>
+      <p>
+        TerraPlan Smart se présente comme une solution modulaire qui peut être
+        déployée progressivement. L’objectif est de partir d’un noyau simple
+        (recommandations par zone) puis d’ajouter des modules spécialisés :
+      </p>
+      <ul>
+        <li>planification des cultures.</li>
+        <li>gestion des risques climatiques.</li>
+        <li>connexion aux marchés et transformateurs.</li>
+        <li>tableaux de bord pour les décideurs publics.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Fonctionnalités clés</h2>
+      <div class="cards">
+        <div class="card">
+          <strong>Analyse des données agro-climatiques</strong>
+          <p style="margin-top:6px;">
+            Intégration de données sur les précipitations, la température, les
+            types de sols et l’historique des cultures pour chaque zone
+            agro-écologique.
+          </p>
+        </div>
+        <div class="card">
+          <strong>Recommandations par zone</strong>
+          <p style="margin-top:6px;">
+            Le producteur choisit sa zone et obtient immédiatement les cultures
+            adaptées, les périodes recommandées, des estimations de quantités
+            et un niveau de risque climatique.
+          </p>
+        </div>
+        <div class="card">
+          <strong>Cartographie agricole</strong>
+          <p style="margin-top:6px;">
+            Visualisation sur carte des zones de production, des risques
+            (sécheresse, inondation, chaleur) et des opportunités (sols
+            favorables, proximité de marchés, etc.).
+          </p>
+        </div>
+      </div>
+
+      <div class="cards" style="margin-top:12px;">
+        <div class="card">
+          <strong>Connexion à la chaîne de valeur</strong>
+          <p style="margin-top:6px;">
+            Modules de mise en relation entre producteurs, transporteurs,
+            transformateurs et acheteurs pour fluidifier la commercialisation.
+          </p>
+        </div>
+        <div class="card">
+          <strong>Tableaux de bord stratégiques</strong>
+          <p style="margin-top:6px;">
+            Interfaces dédiées aux autorités locales et nationales pour suivre
+            la production, anticiper les pénuries et orienter les politiques
+            publiques.
+          </p>
+        </div>
+        <div class="card">
+          <strong>Accessibilité multi-canale</strong>
+          <p style="margin-top:6px;">
+            Une future version pourra être accessible via application mobile,
+            web, USSD et SMS afin d’inclure les producteurs des zones à faible
+            connectivité.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Bénéfices pour les acteurs</h2>
+      <div class="cards">
+        <div class="card">
+          <strong>Pour les producteurs</strong>
+          <ul style="margin-top:6px;">
+            <li>Orientation sur les cultures les plus rentables selon la zone.</li>
+            <li>Réduction des pertes liées aux aléas climatiques.</li>
+            <li>Meilleure visibilité sur la demande du marché.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Pour les décideurs publics</strong>
+          <ul style="margin-top:6px;">
+            <li>Vision consolidée de la production par région.</li>
+            <li>Anticipation des risques de pénurie ou de surproduction.</li>
+            <li>Aide à la définition des politiques agricoles et de subvention.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Pour l’écosystème agricole</strong>
+          <ul style="margin-top:6px;">
+            <li>Meilleure coordination entre les maillons de la chaîne.</li>
+            <li>Réduction du gaspillage de ressources.</li>
+            <li>Opportunités d’innovation pour les start-ups agro-digitales.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Prototype actuel et perspectives</h2>
+      <p>
+        Le prototype présenté s’appuie sur un jeu de données simplifié et
+        démontre les premières briques de la plateforme :
+      </p>
+      <ul>
+        <li>recommandations par zone (Louga, Kaolack, Bignona),</li>
+        <li>visualisation de quelques risques climatiques,</li>
+        <li>carte interactive et tableaux de bord de base.</li>
+      </ul>
+      <p>
+        À terme, TerraPlan Smart pourra intégrer des données temps réel,
+        s’interfacer avec les services météorologiques et les systèmes
+        d’information des ministères, et s’ouvrir à de nouvelles cultures
+        et régions.
+      </p>
+      <p>
+        Pour voir la démonstration technique :  
+        👉 <strong><a href="prototype.html">Consulter la page du prototype AgroMap</a></strong>.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  © 2025 AgroMap Sénégal. Tous droits réservés.
+
+Service de traitement et d'analyse agricole au Sénégal
+</footer>
+
+</body>
+</html>

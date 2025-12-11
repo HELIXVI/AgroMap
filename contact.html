@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>TerraPlan Smart - Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #145a32;
+      --green: #1b5e20;
+      --green-light: #e8f5e9;
+      --bg: #f3f5fb;
+      --card-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #222;
+      line-height: 1.5;
+    }
+    a { color: var(--green-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      background: #0b3c1c;
+      color: #fff;
+      padding: 6px 0;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+    .navbar {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .navbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; }
+    .nav-links {
+      display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.88rem;
+    }
+    .nav-links a {
+      color: #fdfdfd; opacity: 0.9; padding: 4px 8px; border-radius: 999px;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
+
+    header {
+      background: var(--green);
+      color: #fff;
+      padding: 22px 0 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    header h1 { margin: 0 0 6px; font-size: 1.8rem; }
+    header p { margin: 0; max-width: 700px; font-size: 0.96rem; opacity: 0.95; }
+
+    main { padding: 24px 0 32px; }
+    h2 { margin-top: 28px; color: var(--green-dark); font-size: 1.2rem; }
+    p { font-size: 0.95rem; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: var(--card-shadow);
+      font-size: 0.95rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .contact-label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      min-width: 80px;
+    }
+    .contact-value { font-size: 0.9rem; }
+    .badge-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--green-light);
+      font-size: 0.82rem;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: var(--green);
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 16px;
+      color: #666;
+      border-top: 1px solid #dde2f2;
+      background: #fdfdfd;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-content { flex-direction: column; align-items: flex-start; }
+      .nav-links { margin-top: 6px; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  TerraPlan Smart – Contact et Informations sur le projet
+</div>
+
+<nav class="navbar">
+  <div class="container navbar-content">
+    <div class="brand">TerraPlan Smart</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="solution.html">Solution</a>
+      <a href="prototype.html">Prototype AgroMap</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <h1>Contact et A Propos</h1>
+    <p>
+      Pour échanger autour du projet TerraPlan Smart, proposer des partenariats
+      ou partager des retours, vous pouvez utiliser les coordonnées ci-dessous.
+    </p>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section>
+      <h2>Coordonnées</h2>
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Informations de contact</h3>
+          <div class="contact-item">
+            <div class="contact-label">Téléphone</div>
+            <div class="contact-value">+221 77 796 81 17</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">Email</div>
+            <div class="contact-value">
+              <a href="mailto:assanatousadiosane@gmail.com">assanatousadiosane@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-label">Localisation</div>
+            <div class="contact-value">
+              <span class="badge-location">Thiès, Sénégal</span>
+            </div>
+          </div>
+          <p style="margin-top:12px;">
+            Ce site constitue un prototype de présentation académique de TerraPlan Smart.
+            Il pourrait servir de base à une future plateforme opérationnelle, connectée
+            à des données temps réel et à des services partenaires.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Envoyer un message (Ultérieurement)</h3>
+          <p style="font-size:0.85rem; margin-top:4px;">
+            Ce formulaire est illustratif : il ne déclenche pas encore d’envoi réel mais
+            montre la manière dont un contact pourrait être collecté dans une version
+            ultérieure.
+          </p>
+          <form onsubmit="event.preventDefault(); alert('Formulaire démonstratif – pas encore relié à un serveur.');">
+            <div class="form-group">
+              <label for="nom">Nom</label>
+              <input id="nom" type="text" placeholder="Votre nom">
+            </div>
+            <div class="form-group">
+              <label for="emailForm">Email</label>
+              <input id="emailForm" type="email" placeholder="Votre email">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="3" placeholder="Votre message"></textarea>
+            </div>
+            <button type="submit" class="btn">Envoyer (démo)</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>En savoir plus sur TerraPlan Smart</h2>
+      <p>
+        TerraPlan Smart est né du constat que les producteurs ont besoin d’outils
+        simples, visuels et adaptés à leur réalité pour planifier leurs cultures.
+        Le projet vise à combiner les données existantes (climat, sols, marchés)
+        avec des interfaces pédagogiques et accessibles.
+      </p>
+      <p>
+        Pour une vue globale du projet :  
+        <strong><a href="index.html">Consulter la page d’accueil</a></strong> <br>
+        Pour comprendre la logique métier :  
+        <strong><a href="solution.html">Voir la description de la solution</a></strong>  <br>
+        Pour la partie technique et la démo :  
+        <strong><a href="prototype.html">Ouvrir le prototype AgroMap</a></strong>.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  © 2025 AgroMap Sénégal. Tous droits réservés.
+
+Service de traitement et d'analyse agricole au Sénégal
+</footer>
+
+</body>
+</html>

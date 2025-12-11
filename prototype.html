@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>TerraPlan Smart - Prototype AgroMap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    :root {
+      --green-dark: #145a32;
+      --green: #1b5e20;
+      --green-light: #e8f5e9;
+      --bg: #f3f5fb;
+      --card-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #222;
+      line-height: 1.5;
+    }
+    a { color: var(--green-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .topbar {
+      background: #0b3c1c;
+      color: #fff;
+      padding: 6px 0;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+    .navbar {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .navbar-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.04em; }
+    .nav-links {
+      display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.88rem;
+    }
+    .nav-links a {
+      color: #fdfdfd; opacity: 0.9; padding: 4px 8px; border-radius: 999px;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.12); text-decoration: none; }
+
+    header {
+      background: var(--green);
+      color: #fff;
+      padding: 22px 0 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    header h1 { margin: 0 0 6px; font-size: 1.8rem; }
+    header p { margin: 0; max-width: 780px; font-size: 0.96rem; opacity: 0.95; }
+
+    main { padding: 24px 0 32px; }
+    h2 { margin-top: 28px; color: var(--green-dark); font-size: 1.2rem; }
+    h3 { margin-top: 20px; color: #333; font-size: 1.05rem; }
+    p { font-size: 0.95rem; }
+    ul { font-size: 0.95rem; padding-left: 18px; }
+
+    .cards {
+      display: flex; flex-wrap: wrap; gap: 15px; margin-top: 12px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: var(--card-shadow);
+      flex: 1 1 240px;
+      font-size: 0.95rem;
+    }
+
+    .form-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px;
+    }
+    select {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      min-width: 160px;
+      font-size: 0.95rem;
+    }
+    .hint { font-size: 0.85rem; color: #555; margin-top: 6px; }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      background: #e3f2fd;
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+    .chart-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 14px 18px;
+      box-shadow: var(--card-shadow);
+    }
+    .chart-card h3 { margin: 0 0 10px; font-size: 1rem; }
+
+    .map-wrapper { margin-top: 16px; }
+    .map-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+    }
+    .map-header {
+      padding: 10px 14px 0;
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .map-container { height: 360px; width: 100%; }
+    #map { height: 100%; width: 100%; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      font-size: 0.92rem;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+    }
+    th { background: var(--green-light); font-weight: 600; }
+    tr:last-child td { border-bottom: none; }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 16px;
+      color: #666;
+      border-top: 1px solid #dde2f2;
+      background: #fdfdfd;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-content { flex-direction: column; align-items: flex-start; }
+      .nav-links { margin-top: 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  TerraPlan Smart – Démonstration du prototype AgroMap
+</div>
+
+<nav class="navbar">
+  <div class="container navbar-content">
+    <div class="brand">TerraPlan Smart</div>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="solution.html">Solution</a>
+      <a href="prototype.html">Prototype AgroMap</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <h1>Prototype AgroMap</h1>
+    <p>
+      Cette page illustre concrètement comment TerraPlan Smart pourrait guider un
+      producteur : choix de la zone, recommandations de cultures, visualisation
+      des risques et carte interactive.
+    </p>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section>
+      <h2>Vue d’ensemble du prototype</h2>
+      <p>
+        Le prototype AgroMap s’appuie sur un petit jeu de données simulé pour trois
+        zones : Louga, Kaolack et Bignona. Pour chaque zone, des cultures, périodes
+        de production, niveaux de quantité et alertes climatiques sont définis.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <strong>Zones couvertes</strong><br>
+          Louga, Kaolack, Bignona
+        </div>
+        <div class="card">
+          <strong>Nombre de cultures</strong><br>
+          Riz, Carotte, Tomate, Arachide, Mil, Maïs
+        </div>
+        <div class="card">
+          <strong>Types d’alertes simulées</strong><br>
+          Faible pluie, Pluie forte, Besoin d’irrigation, Chaleur élevée
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recommandations par zone</h2>
+      <p>
+        Choisissez une <strong>zone</strong> ci-dessous. Le système affiche automatiquement
+        les cultures adaptées, la période de culture, le niveau de quantité, l’alerte
+        climatique et les points de vente associés.
+      </p>
+
+      <div class="form-inline">
+        <label for="zoneSelect"><strong>Zone :</strong></label>
+        <select id="zoneSelect">
+          <option value="">– Sélectionnez une zone –</option>
+        </select>
+      </div>
+      <p class="hint">
+        Exemple : un producteur à Louga sélectionne sa zone et visualise directement
+        les cultures recommandées avec les périodes et les intrants.
+      </p>
+
+      <div id="zoneResults" style="margin-top: 20px;"></div>
+    </section>
+
+    <section>
+      <h2>Tableau de bord visuel</h2>
+      <p>
+        Les graphiques résument la distribution des cultures par zone et des
+        types d’alertes climatiques observées dans le jeu de données.
+      </p>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>Nombre de cultures par zone</h3>
+          <canvas id="culturesChart"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Répartition des types d’alertes</h3>
+          <canvas id="alertsChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Carte interactive des zones</h2>
+      <p>
+        La carte situe Louga, Kaolack et Bignona et affiche, pour chaque zone, un
+        résumé des cultures et risques dominants.
+      </p>
+
+      <div class="map-wrapper">
+        <div class="map-card">
+          <div class="map-header">
+            <strong>Vue d’ensemble</strong> – Cliquez sur un marqueur pour voir les détails de la zone.
+          </div>
+          <div class="map-container">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Données du prototype</h2>
+      <p>
+        Le tableau ci-dessous reprend les enregistrements simulés utilisés par
+        AgroMap pour cette démonstration.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th>Culture</th>
+            <th>Période</th>
+            <th>Quantité</th>
+            <th>Alerte simulée</th>
+            <th>Points de vente disponibles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Louga</td>
+            <td>Riz</td>
+            <td>Juin – Sept</td>
+            <td>Moyenne</td>
+            <td><span class="badge">Faible pluie</span></td>
+            <td>Semences / Engrais</td>
+          </tr>
+          <tr>
+            <td>Louga</td>
+            <td>Carotte</td>
+            <td>Juillet – Oct</td>
+            <td>Petite</td>
+            <td><span class="badge">Besoin d’irrigation</span></td>
+            <td>Semences / Produits phytosanitaires</td>
+          </tr>
+          <tr>
+            <td>Louga</td>
+            <td>Tomate</td>
+            <td>Juillet – Oct</td>
+            <td>Petite</td>
+            <td><span class="badge">Besoin d’irrigation</span></td>
+            <td>Semences / Produits phytosanitaires</td>
+          </tr>
+          <tr>
+            <td>Kaolack</td>
+            <td>Arachide</td>
+            <td>Juin – Août</td>
+            <td>Moyenne</td>
+            <td><span class="badge">Chaleur élevée</span></td>
+            <td>Semences / Engrais</td>
+          </tr>
+          <tr>
+            <td>Kaolack</td>
+            <td>Mil</td>
+            <td>Juillet – Sept</td>
+            <td>Grande</td>
+            <td><span class="badge">Chaleur élevée</span></td>
+            <td>Semences / Produits phytosanitaires</td>
+          </tr>
+          <tr>
+            <td>Bignona</td>
+            <td>Riz</td>
+            <td>Juin – Sept</td>
+            <td>Moyenne</td>
+            <td><span class="badge">Pluie forte</span></td>
+            <td>Semences / Engrais / Produits phytosanitaires</td>
+          </tr>
+          <tr>
+            <td>Bignona</td>
+            <td>Maïs</td>
+            <td>Juin – Août</td>
+            <td>Moyenne</td>
+            <td><span class="badge">Besoin d’irrigation</span></td>
+            <td>Semences / Engrais</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+   © 2025 AgroMap Sénégal. Tous droits réservés.
+
+Service de traitement et d'analyse agricole au Sénégal
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // Données de base
+  const agroData = [
+    { zone: "Louga",   culture: "Riz",      periode: "Juin – Sept",  quantite: "Moyenne", alerte: "Faible pluie",       points: "Semences / Engrais" },
+    { zone: "Louga",   culture: "Carotte",  periode: "Juillet – Oct",quantite: "Petite",  alerte: "Besoin d’irrigation",points: "Semences / Produits phytosanitaires" },
+    { zone: "Louga",   culture: "Tomate",   periode: "Juillet – Oct",quantite: "Petite",  alerte: "Besoin d’irrigation",points: "Semences / Produits phytosanitaires" },
+    { zone: "Kaolack", culture: "Arachide", periode: "Juin – Août",  quantite: "Moyenne", alerte: "Chaleur élevée",     points: "Semences / Engrais" },
+    { zone: "Kaolack", culture: "Mil",      periode: "Juillet – Sept",quantite: "Grande", alerte: "Chaleur élevée",     points: "Semences / Produits phytosanitaires" },
+    { zone: "Bignona", culture: "Riz",      periode: "Juin – Sept",  quantite: "Moyenne", alerte: "Pluie forte",        points: "Semences / Engrais / Produits phytosanitaires" },
+    { zone: "Bignona", culture: "Maïs",     periode: "Juin – Août",  quantite: "Moyenne", alerte: "Besoin d’irrigation",points: "Semences / Engrais" }
+  ];
+
+  /* Recommandations par zone */
+  const zoneSelect = document.getElementById("zoneSelect");
+  const zoneResults = document.getElementById("zoneResults");
+  const zonesUniques = [...new Set(agroData.map(d => d.zone))];
+
+  zonesUniques.forEach(z => {
+    const opt = document.createElement("option");
+    opt.value = z;
+    opt.textContent = z;
+    zoneSelect.appendChild(opt);
+  });
+
+  zoneSelect.addEventListener("change", () => {
+    const selectedZone = zoneSelect.value;
+    zoneResults.innerHTML = "";
+    if (!selectedZone) return;
+
+    const dataZone = agroData.filter(d => d.zone === selectedZone);
+    if (dataZone.length === 0) {
+      zoneResults.innerHTML = "<p>Aucune donnée disponible pour cette zone.</p>";
+      return;
+    }
+
+    const title = document.createElement("h3");
+    title.textContent = "Recommandations pour la zone : " + selectedZone;
+    zoneResults.appendChild(title);
+
+    const resume = document.createElement("p");
+    resume.innerHTML =
+      "Cette zone dispose de <strong>" + dataZone.length +
+      "</strong> combinaison(s) culture/période. " +
+      "Les cartes ci-dessous détaillent les cultures adaptées, les périodes, " +
+      "les niveaux de quantité et les alertes climatiques associées.";
+    zoneResults.appendChild(resume);
+
+    const container = document.createElement("div");
+    container.className = "cards";
+
+    dataZone.forEach(d => {
+      const c = document.createElement("div");
+      c.className = "card";
+      c.innerHTML = `
+        <strong>${d.culture}</strong><br>
+        <span class="pill">Période : ${d.periode}</span><br><br>
+        <strong>Quantité conseillée :</strong> ${d.quantite}<br>
+        <strong>Alerte climatique :</strong> ${d.alerte}<br>
+        <strong>Points de vente :</strong> ${d.points}
+      `;
+      container.appendChild(c);
+    });
+
+    zoneResults.appendChild(container);
+  });
+
+  /* Graphiques */
+  const culturesParZone = {};
+  agroData.forEach(d => {
+    culturesParZone[d.zone] = (culturesParZone[d.zone] || 0) + 1;
+  });
+  const zones = Object.keys(culturesParZone);
+  const nbCultures = Object.values(culturesParZone);
+
+  const ctxCultures = document.getElementById("culturesChart");
+  if (ctxCultures) {
+    new Chart(ctxCultures, {
+      type: "bar",
+      data: { labels: zones, datasets: [{ label: "Nombre de combinaisons zone × culture", data: nbCultures }] },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+      }
+    });
+  }
+
+  const alertCounts = {};
+  agroData.forEach(d => {
+    alertCounts[d.alerte] = (alertCounts[d.alerte] || 0) + 1;
+  });
+  const alertLabels = Object.keys(alertCounts);
+  const alertValues = Object.values(alertCounts);
+
+  const ctxAlerts = document.getElementById("alertsChart");
+  if (ctxAlerts) {
+    new Chart(ctxAlerts, {
+      type: "bar",
+      data: { labels: alertLabels, datasets: [{ label: "Occurrences d’alerte", data: alertValues }] },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+      }
+    });
+  }
+
+  /* Carte Leaflet */
+  const coords = {
+    "Louga":   { lat: 15.6167, lon: -16.2167 },
+    "Kaolack": { lat: 14.15,   lon: -16.07   },
+    "Bignona": { lat: 12.8,    lon: -16.2333 }
+  };
+
+  const mapDiv = document.getElementById("map");
+  if (mapDiv) {
+    const map = L.map("map").setView([14.3, -15.9], 6);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    zonesUniques.forEach(zone => {
+      const dataZone = agroData.filter(d => d.zone === zone);
+      const cultures = [...new Set(dataZone.map(d => d.culture))].join(", ");
+      const alertes = [...new Set(dataZone.map(d => d.alerte))].join(", ");
+      const point = coords[zone];
+      if (!point) return;
+
+      const popupHtml = `
+        <strong>${zone}</strong><br>
+        Cultures : ${cultures}<br>
+        Alertes : ${alertes}<br>
+        Enregistrements : ${dataZone.length}
+      `;
+      L.marker([point.lat, point.lon]).addTo(map).bindPopup(popupHtml);
+    });
+  }
+</script>
+
+</body>
+</html>
